@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-file-post"></i>
+        VideoGamesHub - {{post.title}}
+    </h1>
+
+    <img style="padding-top: 50px;" id="cover" src="/media/{{post.cover}}">
+
+    <div style="padding-top: 30px;" class="container">
+        <h4>
+            {{post.content|safe}}
+        </h4>
+    </div>
+
+    <div class="container">
+        {% for c in comments %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h4>{{c.user.username}}</h4>
+                    <p>{{c.text}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <form id="comment-form" style="align-self: center;" action="/feed/comment/{{post.id}}">
+            <textarea name="text" rows="10" placeholder="Commenta">
+            </textarea>
+            <br>
+            <button class="btn btn-dark" type="submit">
+                <i class="bi bi-send"></i>
+                Aggiungi commento
+            </button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

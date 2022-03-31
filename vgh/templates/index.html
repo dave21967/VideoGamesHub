@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{block.super}}
+<div id="home" class="container-fluid" style="padding: 50px; opacity: 0;">
+    <h1>
+        <i class="bi bi-controller"></i>
+        VideoGamesHub
+    </h1>
+    <div style="padding-top: 80px;" class="container-fluid">
+        <img id="vhlogo" src="static/img/VHLOGO.png">
+        <h2 style="text-align: center;">
+            Once upon a time, in a galaxy far far away…. ehm ok.<br/>
+            Ben arrivati, sono un ne…ehm <br>
+            appassionato di videogiochi e con questo sito spero di condividere
+            con voi i miei progetti e le curiosità sui giochi più conosciuti
+            (ma anche quelli meno noti). <br>
+            Per altre info cercate un po’ sul sito, buon giro! <br>
+            E seguitemi sui social 🙂
+        </h2>
+        <br><br>
+        <h1 style="text-align: center;">
+            <a style="color: white;text-decoration: none;" href="https://www.instagram.com/videogameshub.it/">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a style="color: white;text-decoration: none;" href="https://twitch.tv/videogameshub_/">
+                <i class="bi bi-twitch"></i>
+            </a>
+            <a style="color: white;text-decoration: none;" href="https://www.pinterest.it/Johnny_pixelart_01/videogameshub/">
+                <i class="bi bi-pinterest"></i>
+            </a>
+        </h1>
+    </div>
+</div>
+<script src="static/js/anime.min.js"></script>
+<script>
+    anime({
+        targets: '#home',
+        opacity: 1,
+        duration: 2000,
+        easing: "easeInOutQuad"
+    });
+</script>
+{% endblock %}

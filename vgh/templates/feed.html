@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-newspaper"></i>
+        VGH - Ultime notizie
+    </h1>
+    <div style="padding-top: 20px;" class="container">
+        {% for p in posts %}
+            <div class="row">
+                <img class="post-cover" src="/media/{{ p.cover }}">
+                <h1>
+                    <a style="color: white;text-decoration: none;" href="/feed/view/{{p.slug}}">
+                        {{p.title}}
+                    </a>
+                </h1>
+                <h4>
+                    <i class="bi bi-calendar"></i>
+                    {{p.pub_date}}
+                </h4>
+                <h4>
+                    <i class="bi bi-tags"></i>
+                    {% load mytags %}
+                    {% for t in p.tags|split:";" %}
+                        <div class="badge bg-secondary">
+                            <a style="color: white;" href="/feed?tag={{t}}">{{t}}</a>
+                        </div>
+                    {% endfor %}
+                </h4>
+                <h4>
+                    {{p.content|truncatewords:"15"|safe}}
+                </h4>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

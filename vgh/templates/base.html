@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" href="{% static 'img/VHLOGO.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>VideoGamesHub</title>
+</head>
+{% endblock %}
+{% block header %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #303030;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+              <img id="brand" src="{% static '/img/VHLOGO.png' %}">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/feed">
+                  Notizie
+                </a>
+              </li>
+              {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">
+                    Accedi
+                  </a>
+                </li>
+              {% else %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{request.user.username}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Esci</a></li>
+                </ul>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+{% endblock %}
+
+<body>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/anime.min.js' %}"></script>
+</body>
+</html>

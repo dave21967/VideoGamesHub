@@ -1,0 +1,48 @@
+#brand {
+    width: 110px;
+}
+
+#vhlogo {
+    width: 300px;
+    margin-left: 40%;
+}
+
+#cover {
+    width: 800px;
+    margin-left: 25%;
+}
+
+.post-cover {
+    width: 300px;
+}
+
+body {
+    background-color: #333;
+    color: white;
+}
+
+.myrow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#comment-form {
+    margin-left: 40%;
+}
+
+@media screen and (max-width: 600px) {
+    #vhlogo {
+        margin-left: 0%;
+        width: 220px;
+    }
+
+    #comment-form {
+        margin-left: 20%;
+    }
+
+    #cover {
+        width: 300px;
+        margin-left: 6%;
+    }
+}
