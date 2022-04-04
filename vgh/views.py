@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 
 from vgh.models import Post, Comment
@@ -26,10 +26,10 @@ def single_post(request, slug):
 def add_comment(request, post):
     if request.user.is_authenticated:
         if request.POST:
-            post = Post.objects.filter(id=post).first()
-            com = Comment(user=request.user, post=post, text=request.POST["text"])
+            pst = Post.objects.filter(id=post).first()
+            com = Comment(user=request.user, post=pst, text=request.POST["text"])
             com.save()
-            return redirect(request.META["HTTP_REFERER"])
+            return redirect(f"/feed/view/{pst.slug}")
     else:
         return HttpResponse(request, "Error: user not authenticated")
 
@@ -46,7 +46,28 @@ def auth(request):
         else:
             return HttpResponse("No user found", status=401)
 
+def signup(request):
+    if request.method == 'GET':
+        return render(request, "signup.html")
+    else:
+        user = User(username=request.POST["username"], email=request.POST["email"])
+        user.set_password(request.POST["password"])
+        group = Group.objects.filter(name="comune").first()
+        user.save()
+        user.groups.add(group)
+        return redirect("/login")
+
 def log_out(request):
     if request.user.is_authenticated:
         logout(request)
         return redirect("/")
+
+def profile(request):
+    if request.user.is_authenticated:
+        user = User.objects.filter(username=request.user).first()
+        is_dev = False
+        if user.groups.filter(name="developer") or user.is_superuser:
+            is_dev = True
+        return render(request, "profile.html", {"user": user, "isDev": is_dev})
+    else:
+        return redirect("/login")

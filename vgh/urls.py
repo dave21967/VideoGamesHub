@@ -8,4 +8,6 @@ urlpatterns = [
     path('feed/view/<slug>', views.single_post),
     path('login', views.auth),
     path('logout', views.log_out),
+    path('me', views.profile),
+    path('signup', views.signup),
 ]

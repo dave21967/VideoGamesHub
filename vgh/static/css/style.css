@@ -31,6 +31,10 @@ body {
     margin-left: 40%;
 }
 
+.game-cover {
+    width: 200px;
+}
+
 @media screen and (max-width: 600px) {
     #vhlogo {
         margin-left: 0%;
@@ -39,6 +43,10 @@ body {
 
     #comment-form {
         margin-left: 20%;
+    }
+
+    .myrow {
+        width: 100%;
     }
 
     #cover {

@@ -16,19 +16,9 @@
         </h4>
     </div>
 
-    <div class="container">
-        {% for c in comments %}
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4>{{c.user.username}}</h4>
-                    <p>{{c.text}}</p>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
     {% if request.user.is_authenticated %}
-        <form id="comment-form" style="align-self: center;" action="/feed/comment/{{post.id}}">
+        <form id="comment-form" style="align-self: center;" method="POST" action="/feed/comment/{{post.id}}">
+            {% csrf_token %}
             <textarea name="text" rows="10" placeholder="Commenta">
             </textarea>
             <br>
@@ -38,5 +28,16 @@
             </button>
         </form>
     {% endif %}
+
+    <div style="align-self: center;" class="container">
+        {% for c in comments %}
+            <div class="card" style="width: 18rem;background-color: #111;">
+                <div class="card-body">
+                    <h4>{{c.user.username}}</h4>
+                    <p>{{c.text}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

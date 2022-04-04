@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vgh',
+    'thehub',
     'rest_framework',
 ]
 
@@ -57,8 +58,6 @@ TEMPLATES = [
         },
     },
 ]
-
-LOGIN_REDIRECT_URL = ""
 
 WSGI_APPLICATION = 'VideoGamesHub.wsgi.application'
 
