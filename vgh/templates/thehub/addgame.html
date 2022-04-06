@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2>
+        <i class="bi bi-controller"></i>
+        Pubblica il tuo gioco
+    </h2>
+    <br>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label>Titolo</label>
+                    <input type="text" placeholder="Titolo del gioco" class="form-control" name="title">
+                </div>
+                <div class="col">
+                    <label>Copertina del gioco</label>
+                    <input type="file" class="form-control" name="cover">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <textarea name="desc" rows="15" placeholder="Descrizione del gioco" class="form-control"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Pegi</label>
+                    <input type="number" name="pegi" class="form-control" placeholder="Pegi gioco">
+                </div>
+                <div class="col">
+                    <label>File di gioco</label>
+                    <input type="file" name="gamefiles" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Categoria</label>
+                    <select name="cathegory" class="form-select">
+                        <option value="">Seleziona</option>
+                        {% for c in categories %}
+                            <option value="{{c.title}}">{{c.title}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-dark" type="submit">
+                        <i class="bi bi-save"></i>
+                        Pubblica
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

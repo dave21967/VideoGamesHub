@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-controller"></i>
+        VGH - {{game.title}}
+    </h1>
+
+    <div class="container">
+        <h2 style="text-align: center;">{{game.title}}</h2>
+        <br>
+        <img id="game-cover" src="/media/{{game.cover}}">
+        <br>
+        <h3>
+            {{game.description}}
+        </h3>
+        <br>
+        <a role="button" class="btn btn-primary" href="/thehub/game/{{game.id}}/download">
+            <i class="bi bi-download"></i>
+            Scarica!
+        </a>
+    </div>
+</div>
+{% endblock %}
