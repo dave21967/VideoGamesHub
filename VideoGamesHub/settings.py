@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'vgh',
     'thehub',
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [

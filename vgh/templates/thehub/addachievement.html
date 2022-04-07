@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-trophy"></i>
+        Aggiungi trofeo - {{game.title}}
+    </h1>
+
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label>Titolo trofeo</label>
+                    <input type="text" class="form-control" name="title" placeholder="Titolo">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Descrizione trofeo</label>
+                    <textarea name="desc" rows="10" placeholder="Descrizione" class="form-control"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Difficoltà trofeo</label>
+                    <input type="number" class="form-control" name="difficulty" placeholder="Difficoltà">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-dark" type="submit">
+                        <i class="bi bi-save"></i>
+                        Salva trofeo
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-pencil"></i>
+        Modifica gioco - {{game.title}}
+    </h1>
+
+    <div class="container" style="padding-top: 20px;">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label>Titolo gioco</label>
+                    <input type="text" placeholder="Titolo" name="title" value="{{game.title}}" class="form-control">
+                </div>
+                <div class="col">
+                    <label>Copertina gioco</label>
+                    <input type="file" placeholder="Copertina" name="cover" value="{{game.cover}}" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Descrizione gioco</label>
+                    <textarea placeholder="Descrizione" name="desc" rows="10" class="form-control">{{game.description}}</textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Pegi</label>
+                    <input type="number" placeholder="Pegi" name="pegi" value="{{game.pegi}}" class="form-control">
+                </div>
+                <div class="col">
+                    <label>Files gioco</label>
+                    <input type="file" placeholder="File di gioco" name="gamefiles" value="/media/{{game.files}}" class="form-control">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>Categoria gioco</label>
+                    <select name="cathegory" class="form-select" value="{{game.cathergory}}">
+                        <option value="">Seleziona</option>
+                        {% for c in cathegories %}
+                        <option value="{{c.title}}">
+                            {{c.title}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-dark" type="submit">
+                        <i class="bi bi-save"></i>
+                        Salva modifiche
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <h1>
+                <i class="bi bi-trophy"></i>
+                Trofei - {{game.title}}
+            </h1>
+        </div>
+        <div class="col">
+            <a class="btn btn-dark" role="button" href="/thehub/panel/achievements/{{game.id}}/add">
+                <i class="bi bi-plus"></i>
+                Aggiungi trofeo
+            </a>
+        </div>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <th>Id</th>
+            <th>Titolo</th>
+            <th>Difficoltà</th>
+            <th>Gioco</th>
+            <th>Elimina</th>
+        </thead>
+        <tbody>
+            {% for t in achievements %}
+            <tr>
+                <td>{{t.id}}</td>
+                <td>{{t.title}}</td>
+                <td>{{t.difficulty}}</td>
+                <td>{{t.game}}</td>
+                <td>
+                    <a class="btn btn-danger" role="button" href="/thehub/panel/achievements/{{t.id}}/delete">
+                        <i class="bi bi-delete"></i>
+                        Elimina
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

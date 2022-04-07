@@ -2,7 +2,10 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Welcome to The Hub!</h1>
+    <h1>
+        <i class="bi bi-controller"></i>
+        Welcome to The Hub!
+    </h1>
     <form action="/thehub">
         <div class="row">
             <div class="col">
@@ -10,6 +13,25 @@
             </div>
             <div class="col">
                 <input type="button" value="Cerca" class="btn btn-dark">
+            </div>
+        </div>
+        <br>
+    </form>
+    <form action="">
+        <div class="row">
+            <div class="col">
+                <select name="cath" class="form-select">
+                    <option value="">Filtra</option>
+                    {% for c in cathegories %}
+                    <option value="{{c.title}}">{{c.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark" type="submit">
+                    <i class="bi bi-search"></i>
+                    Filtra
+                </button>
             </div>
         </div>
     </form>
@@ -27,6 +49,12 @@
                         <p>
                             {{g.description}}
                         </p>
+                        <p>
+                            Genere: {{g.cathergory}}
+                        </p>
+                        <a href="/thehub/developer/{{g.developer}}">
+                            By: {{g.developer}}
+                        </a>
                         <a role="button" class="btn btn-dark" href="/thehub/game/{{g.id}}">Visualizza</a>
                     </div>
                 </div>

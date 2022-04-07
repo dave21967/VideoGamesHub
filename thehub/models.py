@@ -9,6 +9,15 @@ class GameCathegory(models.Model):
     def __str__(self):
         return self.title
 
+class DevRequest(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    text = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
 class Game(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(max_length=50)
@@ -24,9 +33,26 @@ class Game(models.Model):
     def __str__(self):
         return self.title
 
+class GameSave(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    data = models.JSONField()
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.id)
+
 class Achievement(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(max_length=50)
     description = models.TextField()
     difficulty = models.IntegerField(default=0)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class GainAchievement(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -2,8 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.authtoken.models import Token
 
-from vgh.models import Post, Comment
+from vgh.models import Post, Comment, Profile
 
 def index(request):
     return render(request, "index.html")
@@ -64,10 +65,22 @@ def log_out(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        user = User.objects.filter(username=request.user).first()
-        is_dev = False
-        if user.groups.filter(name="developer") or user.is_superuser:
-            is_dev = True
-        return render(request, "profile.html", {"user": user, "isDev": is_dev})
+        if request.method == 'GET':
+            user = User.objects.filter(username=request.user).first()
+            token = Token.objects.filter(user=user).first()
+            profile = Profile.objects.filter(user=user).first()
+            is_dev = False
+            if user.groups.filter(name="developer") or user.is_superuser:
+                is_dev = True
+            return render(request, "profile.html", {"user": user, "isDev": is_dev, "prof": profile, "token": token})
+        else:
+            user = User.objects.filter(username=request.user).first()
+            prof = Profile.objects.filter(user=user).first()
+            user.first_name = request.POST["first_name"]
+            user.last_name = request.POST["last_name"]
+            user.save()
+            prof.bio = request.POST["bio"]
+            prof.save()
+            return redirect("/me")
     else:
         return redirect("/login")

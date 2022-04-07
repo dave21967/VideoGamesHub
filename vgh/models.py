@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     news_letter = models.BooleanField(default=True)
+    bio = models.TextField(default="")
+    level = models.IntegerField(default=1)
+    total_xp = models.IntegerField(default=0)
+    missing_xp = models.IntegerField(default=200)
     profile_pic = models.ImageField(upload_to="profile_pics", blank=True)
 
 class Post(models.Model):

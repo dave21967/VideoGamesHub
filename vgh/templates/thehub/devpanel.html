@@ -23,6 +23,7 @@
     <br>
     <table class="table table-dark" style="color: white;">
         <thead>
+            <th>Id</th>
             <th>Titolo</th>
             <th>Pegi</th>
             <th>Data pubblicazione</th>
@@ -34,19 +35,20 @@
         <tbody>
             {% for g in games %}
             <tr>
+                <td>{{g.id}}</td>
                 <td>{{g.title}}</td>
                 <td>{{g.pegi}}</td>
                 <td>{{g.pub_date}}</td>
                 <td>{{g.cathergory}}</td>
                 <td>{{g.downloads}}</td>
                 <td>
-                    <a role="button" class="btn btn-primary" href="#">
+                    <a role="button" class="btn btn-primary" href="/thehub/panel/update/{{g.id}}">
                         <i class="bi bi-pencil"></i>
                         Modifica
                     </a>
                 </td>
                 <td>
-                    <a role="button" class="btn btn-danger" href="#">
+                    <a role="button" class="btn btn-danger" href="/thehub/panel/delete/{{g.id}}">
                         <i class="bi bi-trash"></i>
                         Elimina
                     </a>

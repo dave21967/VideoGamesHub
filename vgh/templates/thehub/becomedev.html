@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>
+        <i class="bi bi-code"></i>
+        Diventa uno sviluppatore!
+    </h1>
+    <br>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label>Domanda di aggiunta agli sviluppatori</label>
+                    <textarea class="form-control" placeholder="Testo domanda" name="text" rows="10"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-dark" type="submit">
+                        <i class="bi bi-question"></i>
+                        Invia richiesta
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

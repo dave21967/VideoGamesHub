@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <h1>
         <i class="bi bi-person"></i>
-        Il mio profilo
+        Il mio profilo - API key: {{token}}
     </h1>
     <br>
     <form action="#" method="POST">
@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col">
                 <label>Nome</label>
-                <input type="text" class="form-control" placeholder="Nome" value="{{user.first_name}}">
+                <input type="text" class="form-control" placeholder="Nome" name="first_name" value="{{user.first_name}}">
             </div>
             <div class="col">
                 <label>Cognome</label>
-                <input type="text" class="form-control" placeholder="Cognome" value="{{user.last_name}}">
+                <input type="text" class="form-control" placeholder="Cognome" name="last_name" value="{{user.last_name}}">
             </div>
         </div>
         <div class="row">
@@ -27,6 +27,13 @@
             <div class="col">
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="Password">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label>Biografia</label>
+                <textarea name="bio" rows="10" placeholder="Biografia" class="form-control">{{prof.bio}}</textarea>
             </div>
         </div>
         <div class="row">
@@ -45,10 +52,10 @@
             Pannello da sviluppatore
         </a>
     {% else %}
-        <button style="width: 100%; margin-top: 20%;" class="btn btn-success">
+        <a role="button" href="/thehub/panel/askbecome" style="width: 100%; margin-top: 20%;" class="btn btn-success">
             <i class="bi bi-code"></i>
             Diventa uno sviluppatore
-        </button>
+        </a>
     {% endif %}
 </div>
 {% endblock %}
