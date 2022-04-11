@@ -37,8 +37,9 @@ def gain_achievement(request, achiv):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 @authentication_classes([TokenAuthentication])
-def get_profile(request):
-    profile = Profile.objects.filter(user=request.user).first()
+def get_profile(request, username):
+    user = User.objects.filter(username=username).first()
+    profile = Profile.objects.filter(user=user).first()
     ser = ProfileSerializer(profile)
     return JsonResponse(ser.data, safe=False)
 

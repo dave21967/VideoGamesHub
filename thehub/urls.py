@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.index),
     path('/api/achievements/<game>', views.get_achievements),
     path('/api/achievements/gain/<achiv>', views.gain_achievement),
-    path('/api/me', views.get_profile),
+    path('/api/me/<username>', views.get_profile),
     path('/api/gamesave/get/<game>', views.get_game_save),
     path('/api/gamesave/save/<game>',views.save_game_data),
     path('/developer/<dev>', views.dev_page),
